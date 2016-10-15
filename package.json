@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/parthsdoshi/Hello-World#readme",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "firebase": "^3.5.0",
     "request": "^2.75.0"
   }
