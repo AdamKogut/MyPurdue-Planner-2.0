@@ -1,0 +1,27 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "description": "A Better myPurdue Planner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parthsdoshi/Hello-World.git"
+  },
+  "keywords": [
+    "Purdue",
+    "planner"
+  ],
+  "author": "Parth Doshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/parthsdoshi/Hello-World/issues"
+  },
+  "homepage": "https://github.com/parthsdoshi/Hello-World#readme",
+  "dependencies": {
+    "firebase": "^3.5.0",
+    "request": "^2.75.0"
+  }
+}
