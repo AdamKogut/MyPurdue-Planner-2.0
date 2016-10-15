@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hello-world-e96ef",
+  "private_key_id": "78086433a32a5e1b34460e4b853f952ff5152d0a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDGeYBSKz0eQw8J\nxOs+yajG19gQcO9NJ4+SJ+2SbeBLm8GfY+supBp7VVDtCL9ntceRB+MsQaFRCvTn\nzFld6Z7duMRfr9R1KLaqIdKVeRZmM9WlmFtH0mK9CwjWO8kGvZH8TugWwJCPVB+s\n/18CY9fX9zOwgRuN72yqH3p4VEPUPleE97D7K47MRf1bMed7bIMWDwAyCIL4Z6yG\nM8rZ/is+tJcWUY9WvGoNLoCBoe7KkHSXoFaAamsvdIU38vS3qJLb5a0gdROqSX7n\nG6OkChQgYwOEsiNlAJxVt5SN3obGGtZz4ZZR28if/AGFpE4x+aT99Gmwd5aU45kn\nHmj6ROsFAgMBAAECggEBAKaY6GiQmN3lBiN6IsjydvRpy5iJY6VM1sulLlriVgrB\nNDa5pXjiEMSD6cj9tcS1Jk4L49mLQYCIhOhpdH5LEqokZNm4+spZIXMPrvb+zBl/\n2w8EI2LXK0BpmcJSLry0tWynQ1ON0gotX+VT+olEC7Lhcobu6JUsavcmMyP7/2+Q\nZH0kWc0tOWGxO/VlT10aloq2NLJklDIWo682hAzkZrb+8oE2aSJuUwo6tiyxJ1MG\nLn7h7WOKwlar8z/WAtVm4QyN+H2HsuBH9MAGQPL1DgLHL9evkl6KyLmRmI1FOIOS\n5oFlVYu+CKXCWq/Vz8w06BZ9turEeVBY6BbOAjwG6qUCgYEA+ZvukOo7APpR1/GV\ndOf4jTia0I5m4SOF1kMfRrzetSNU4mrJS7QLg+R9GQFxLmt/gVc2mlUt9wt7hLBx\ndyYz7sOlSeuQNi4OylaQq1L5igooGH9B7/PL6us0L1Mu0zWGYZff9fcwS7j1ZBAR\nwmgZWagpGUnBAv6/ZgGvO1tNbH8CgYEAy45oQTTuO+ABNxHwv7jAfaIDsA2KrYOB\nU6LAvF6RuS/bIZix4T6v9iQ8aRmGiA1vTyMOWcoPBV+IbnZwlxFtPVmnQDWH2fsv\nc+cZngt71oOQ30C6YktVgSIXm5t7ikFt5qJeD7gvrAkEDbLsYsMhOYwTKyuJN6Ql\n05caYA1RNnsCgYEAnPiA2MVUgdLpsUGN2c0fs7/LLCjBbggm3I2tl5CjBYrIkPLS\n0DbTnwgL27Pad3TG5JHyFrBGjbu8278SO/ncYuTKh2gKcugYCQrTQ8qUf0jP2kf9\nMWdB7+QmFzTal5xre+hEwavHxXb1aw3n/Tf16TolTm/hX37Q4tdgWZWbZQUCgYB1\n7K9LL23gtBogHD2b5F1nqwd147J2aRvwJvZ/ak4Ducy6Puq2MgngkAeLX6VHhnj4\noLd8nwlqtHimfekmK4tcoma5VQm558IK5FQ78i0xDhFMtQQFU91aLTT+CepdIyCX\nH3Ncqfi8MpDtmr1FTgQegZ7NQLCC0o6zcPNvt+dXpwKBgDZeDYA5tqHkVZnUYDRD\nToSkrMHCnoKvNBTx1Ret0oHCTOQoxzazw07k5Ij4nmqUBjZcxxhmKi7lKPGS/Klf\nFpMmCWcyrypoxEpHgld/9C3CN5GhW9OSGtJTtEOIqkrZOh6O4TiKRHIFkU1vRhQJ\nM4PM/We9/4j9eskIIqk1vPda\n-----END PRIVATE KEY-----\n",
+  "client_email": "mypurdue-planner-server@hello-world-e96ef.iam.gserviceaccount.com",
+  "client_id": "103081042942366137069",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mypurdue-planner-server%40hello-world-e96ef.iam.gserviceaccount.com"
+}
