@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/parthsdoshi/Hello-World#readme",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-dragdrop": "^1.0.13",
+    "angularfire": "^2.0.2",
     "bootstrap": "^3.3.7",
     "firebase": "^3.5.0",
     "request": "^2.75.0"

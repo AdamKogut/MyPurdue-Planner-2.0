@@ -1,15 +1,333 @@
+<!--A web app programmed for the Hello World Hackathon programmed by Parth Doshi, Adam Kogut, Kunal Sinha, Lucas Shaker, Kevin Vosburgh-->
 <!DOCTYPE HTML>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <title>MyPurdue 2.0</title>
-    </head>
+<html ng-app="myPurduePlanner" ng-controller="AuthenticationController as authCtrl" ng-init="authCtrl.init();">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/please-wait/build/please-wait.css" type="text/css"/>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="mainPage.css" type="text/css"/>
+    <link rel = "icon" href = "icon2.png">
+    
+    <title>MyPurdue Planner 2.0</title>
+    
+  </head>
+  <body ng-controller="coursePopulator">
+    <div>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+               
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+      
+            <a href = "#" class = "navbar-left">
+            <img src="logo.png" style="display: inline-block;">
+            </a>
+            <a class="navbar-brand" href="#">
+               &nbsp MyPurdue Planner 2.0 
+            </a>
+          
+          </div>
+  
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="http://www.mypurdue.purdue.edu">MyPurdue<span class="sr-only">(current)</span></a></li>
+              <li><a href="http://www.eelslap.com/">More Information</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="signInPage.html" ng-click="authCtrl.logout();"><span class = "	glyphicon glyphicon-log-out"></span>&nbsp Logout {{email}} </span></a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <div class="row center-block" style="width: 95%">
+        <div class = "col-xs-12 col-md-8" >
+          <div class = "panel panel-default">
+              <div class="panel-heading">
+                <h2 class="panel-title">Total Credits: {{totalCredits}}</h3>
+                <p>Click on a course to put in back in the Course Workspace. Click on a course in the Course Workspace to add it to the current semester.</p>
+                
+              </div>
+              <div class="panel-body" id="potato">
+                  <!--Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a ng-click="tab = 'semester1'" href="#s1" aria-controls="s1" role="tab" data-toggle="tab">Semester 1</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester2'" href="#s2" aria-controls="s2" role="tab" data-toggle="tab">Semester 2</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester3'" href="#s3" aria-controls="s3" role="tab" data-toggle="tab">Semester 3</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester4'" href="#s4" aria-controls="s4" role="tab" data-toggle="tab">Semester 4</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester5'" href="#s5" aria-controls="s5" role="tab" data-toggle="tab">Semester 5</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester6'" href="#s6" aria-controls="s6" role="tab" data-toggle="tab">Semester 6</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester7'" href="#s7" aria-controls="s7" role="tab" data-toggle="tab">Semester 7</a></li>
+                    <li role="presentation"><a ng-click="tab = 'semester8'" href="#s8" aria-controls="s8" role="tab" data-toggle="tab">Semester 8</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="s1">
+                      
+                        <!--<h5>Put Classes Here</h5>-->
+                        <!--<div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="semester1" jqyoui-droppable style='height:50px;'>-->
+                        <!--  <div ng-repeat="course in semester1 track by $index" class="btn btn-draggable btn-success" data-drag="true" data-jqyoui-options ng-model="semester1" jqyoui-draggable>{{course.Title}}</div>-->
+                        <!--</div>-->
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s1Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester1 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s2">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s2Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester2 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s3">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s3Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester3 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s4">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s4Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester4 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s5">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s5Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester5 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s6">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s6Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester6 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s7">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s7Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester7 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="s8">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Credits: {{s8Credits}}
+                          </div>
+                          <div class="panel-body">
+                            <div class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="course in semester8 track by $index" ng-click="transferToWorkspace(course)">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                         
+                    </div>
+                  </div>
+              </div>
+          </div>
+  
+          
+        </div>
+  
+  
+        <div class = "col-xs-6 col-md-4">
+          <div class="panel panel-info" id="potato">
+              <div class="panel-heading">
+                  <span style="font-size:20px;">Course Workspace</span>
+                  <button type="button" class="btn btn-default btn-s" style="float: right;" data-toggle="modal" data-target=".bs-example-modal-lg">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </button>
+                  <p></p>
+                  <p>Add any course that you want to take into this area. Click on the course to add it to the current semester.</p>
+              </div>
+              <div class="panel-body">
+  
+                  <!--<div>-->
+                  <!--  Add any course you want to take into this area, then drag and drop courses into a semester.  -->
+                  <!--</div>-->
+                  <!--<div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="workspace" jqyoui-droppable style='height:50px;'>-->
+                  <!--  <div ng-repeat="course in workspace track by $index" class="btn btn-success btn-draggable" data-drag="true" data-jqyoui-options ng-model="workspace" jqyoui-draggable>{{course.Title}}</div>-->
+                  <!--</div>-->
+                  <div class="list-group">
+                    <a href="" class="list-group-item" ng-repeat="course in workspace track by $index" ng-click="transferCourse(course);">
+                      <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                      <p class="list-group-item-text">{{course["Description"]}}</p>
+                    </a>
+                  </div>
+              </div>
+          </div>
+          
+        </div>
+  
+      </div>
+  
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Done">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div class="panel-heading ">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h3 class="modal-title" style="padding-top: 8px;">Subjects</h3>
+                      </div>
+                      <div class="col-sm-6">
+                        <form role="search">
+                          <div class="input-group">
+                            <input type="text" name="subjectSearch" class="form-control" ng-model="subjectSearchInput">
+                            <div class="input-group-btn">
+                              <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+              
+              
+              <div class="panel panel-default">
+                
+                  <div class="panel panel-body">
+                    <div class="panel panel-default" style="padding-top: 0px; padding-bottom: 0px; margin-bottom: 0px;" ng-repeat="subject in courseObject | filter:subjectSearchInput">
+                        <div class="panel-heading" ng-init="show = false;" ng-click="show = !show;">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <h3 class="panel-title" style="padding-top: 8px;">
+                                  <a href="">{{subject["name"]}} 
+                                    <span class="label label-as-badge" style = "background-color: rgb(200,200,200)">{{subject['courses'].length}}</span>
+                                  </a>
+                                </h3>
+                              </div>
+                              <div class="col-sm-6">
+                                <form role="search">
+                                  <div class="input-group">
+                                      <input type="text" name="subjectSearch" class="form-control" ng-model="courseSearch">
+                                      <div class="input-group-btn">
+                                      <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="panel-body" ng-show="show">
+                            <div class="list-group">
+                              <a href="#" class="list-group-item" ng-repeat="course in subject['courses'] | filter:courseSearch" ng-init="course.Abbreviation = subject.$id;" ng-class="{'active': workspaceIncludes(course)}" ng-click="addCoursetoWorkspace(course);">
+                                <h4 class="list-group-item-heading">{{course.Abbreviation + course["Number"] + ": " + course["Title"]}}</h4>
+                                <p class="list-group-item-text">{{course["Description"]}}</p>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!--<footer>
+        <p>Web app by Parth Doshi, Adam Kogut, Kunal Sinha, Lucas Shaker, Kevin Vosburgh<br/>
+        Created with NodeJS, AngularJS, Firebase, Purdue.io api, OAuth 2.0, C9, HTML, CSS</p>
+      </footer>-->
+    </div>
 
-    <body>
-
-    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="node_modules/please-wait/build/please-wait.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script type="text/javascript" src="node_modules/angularfire/dist/angularfire.min.js"></script>
+    <!--<script type="text/javascript" src="touch-punch.min.js"></script>-->
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="node_modules/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
+    <script type="text/javascript" src="main.js"></script>
+  </body>
 </html>

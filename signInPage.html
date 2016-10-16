@@ -1,0 +1,96 @@
+<html>
+
+  <head>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
+    <link type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link type="text/css" href="mainPage.css" rel="stylesheet"/>
+    
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel = "icon" href = "icon2.png">
+    
+    <script>
+      var config = {
+        apiKey: "AIzaSyACQ09Ye9rZSZ7-50X5jZdtZKr8uKLsoQk",
+        authDomain: "hello-world-e96ef.firebaseapp.com",
+        databaseURL: "https://hello-world-e96ef.firebaseio.com",
+        storageBucket: "hello-world-e96ef.appspot.com",
+        messagingSenderId: "4015367255"
+      };
+      var app = firebase.initializeApp(config);
+      var auth = app.auth();
+      initApp = function() {
+        auth.onAuthStateChanged(function(user) {
+          if (user) {
+            window.location.replace("index.html");
+          } else {
+            var uiConfig = {
+              'signInSuccessUrl': 'index.html',
+              'signInOptions': [
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
+              ],
+              'tosUrl': '#',
+            };
+            var ui = new firebaseui.auth.AuthUI(auth);
+            ui.start('#firebaseui-auth-container', uiConfig);
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+      window.onload = function() {
+        initApp()
+      };
+    </script>
+
+
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+             
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+    
+          <a href = "#" class = "navbar-left">
+          <img src="logo.png" style="display: inline-block;">
+          </a>
+          <a class="navbar-brand" href="#">
+             &nbsp MyPurdue Planner 2.0 
+          </a>
+        
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="http://www.mypurdue.purdue.edu">MyPurdue<span class="sr-only">(current)</span></a></li>
+            <li><a href="http://www.eelslap.com/">More Information</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+         Your app may use that space for branding, controls and other customizations.-->
+    <div id="firebaseui-auth-container"></div>
+    
+    <!--<footer>
+      <p>Web app by Parth Doshi, Adam Kogut, Kunal Sinha, Lucas Shaker, Kevin Vosburgh<br/>
+      Created with NodeJS, AngularJS, HTML, CSS</p>
+    </footer>-->
+  </body>
+</html>
