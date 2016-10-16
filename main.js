@@ -53,7 +53,6 @@
                 $scope.user = $firebaseObject($scope.userRef);
                 $scope.user.$loaded().then(function(){
                     if ($scope.user){
-                        console.log($scope.user);
                         if ($scope.user.workspace){
                             $scope.workspace = $scope.user.workspace;
                         }
@@ -191,7 +190,6 @@
                 });
                 
                 var workspaceIndexOf = function(course){
-                    console.log(course);
                     for (var i = 0; i < $scope.workspace.length; i++){
                         if ($scope.workspace[i].courseId == course.courseId && $scope.workspace[i].Number == course.Number){
                             return i;
@@ -255,7 +253,6 @@
                 }
                 
                 $scope.transferCourse = function(course){
-                    console.log(course);
                     if ($scope.tab == ("semester1")){
                         $scope.semester1.push(course);
                         $scope.s1Credits += course.CreditHours;
