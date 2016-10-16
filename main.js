@@ -14,6 +14,7 @@
     
     app.controller("AuthenticationController", ["$scope", "$firebaseAuth", "$firebaseArray", "$firebaseObject", "$window", function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $window){
         $scope.authenticated = false;
+        $scope.finished = false;
         $window.loading_screen = $window.pleaseWait({
             logo: "logo.png",
             backgroundColor: '#FFFFFF',
@@ -80,55 +81,64 @@
                         if ($scope.user.semester8){
                             $scope.semester8 = $scope.user.semester8;
                         }
-                        if ($scope.s1Credits){
-                            $scope.s1Credits = $scope.user.s1Credits;
-                        }
-                        if ($scope.s2Credits){
-                            $scope.s2Credits = $scope.user.s2Credits;
-                        }
-                        if ($scope.s3Credits){
-                            $scope.s3Credits = $scope.user.s3Credits;
-                        }
-                        if ($scope.s4Credits){
-                            $scope.s4Credits = $scope.user.s4Credits;
-                        }
-                        if ($scope.s5Credits){
-                            $scope.s5Credits = $scope.user.s5Credits;
-                        }
-                        if ($scope.s6Credits){
-                            $scope.s6Credits = $scope.user.s6Credits;
-                        }
-                        if ($scope.s7Credits){
-                            $scope.s7Credits = $scope.user.s7Credits;
-                        }
-                        if ($scope.s8Credits){
-                            $scope.s8Credits = $scope.user.s8Credits;
-                        }
-                        if ($scope.totalCredits){
-                            $scope.totalCredits = $scope.user.totalCredits;
-                        }
+                        // if ($scope.s1Credits){
+                        //     $scope.s1Credits = $scope.user.s1Credits;
+                        // }
+                        // if ($scope.s2Credits){
+                        //     $scope.s2Credits = $scope.user.s2Credits;
+                        // }
+                        // if ($scope.s3Credits){
+                        //     $scope.s3Credits = $scope.user.s3Credits;
+                        // }
+                        // if ($scope.s4Credits){
+                        //     $scope.s4Credits = $scope.user.s4Credits;
+                        // }
+                        // if ($scope.s5Credits){
+                        //     $scope.s5Credits = $scope.user.s5Credits;
+                        // }
+                        // if ($scope.s6Credits){
+                        //     $scope.s6Credits = $scope.user.s6Credits;
+                        // }
+                        // if ($scope.s7Credits){
+                        //     $scope.s7Credits = $scope.user.s7Credits;
+                        // }
+                        // if ($scope.s8Credits){
+                        //     $scope.s8Credits = $scope.user.s8Credits;
+                        // }
+                        // if ($scope.totalCredits){
+                        //     $scope.totalCredits = $scope.user.totalCredits;
+                        // }
                     } else {
-                        $scope.userRef.update({
-                           "workspace" : $scope.workspace,
-                           "semester1" : $scope.semester1,
-                           "semester2" : $scope.semester2,
-                           "semester3" : $scope.semester3,
-                           "semester4" : $scope.semester4,
-                           "semester5" : $scope.semester5,
-                           "semester6" : $scope.semester6,
-                           "semester7" : $scope.semester7,
-                           "semester8" : $scope.semester8,
-                           "s1Credits" : $scope.s1Credits,
-                           "s2Credits" : $scope.s2Credits,
-                           "s3Credits" : $scope.s3Credits,
-                           "s4Credits" : $scope.s4Credits,
-                           "s5Credits" : $scope.s5Credits,
-                           "s6Credits" : $scope.s6Credits,
-                           "s7Credits" : $scope.s7Credits,
-                           "s8Credits" : $scope.s8Credits,
-                           "totalCredits" : $scope.totalCredits
-                        });
+                        $scope.updateToFirebase();
                     }
+                    for (var course in $scope.semester1){
+                        $scope.s1Credits += $scope.semester1[course].CreditHours;
+                    }
+                    for (var course in $scope.semester2){
+                        $scope.s2Credits += $scope.semester2[course].CreditHours;
+                    }
+                    for (var course in $scope.semester3){
+                        $scope.s3Credits += $scope.semester3[course].CreditHours;
+                    }
+                    for (var course in $scope.semester4){
+                        $scope.s4Credits += $scope.semester4[course].CreditHours;
+                    }
+                    for (var course in $scope.semester5){
+                        $scope.s5Credits += $scope.semester5[course].CreditHours;
+                    }
+                    for (var course in $scope.semester6){
+                        $scope.s6Credits += $scope.semester6[course].CreditHours;
+                    }
+                    for (var course in $scope.semester7){
+                        $scope.s7Credits += $scope.semester7[course].CreditHours;
+                    }
+                    for (var course in $scope.semester8){
+                        $scope.s8Credits += $scope.semester8[course].CreditHours;
+                    }
+                    $scope.totalCredits += $scope.s1Credits + $scope.s2Credits + $scope.s3Credits + $scope.s4Credits + $scope.s5Credits + $scope.s6Credits + $scope.s7Credits + $scope.s8Credits;
+                    $scope.$watch("workspace", function(){
+                        $scope.updateToFirebase();
+                    }, true);
                 });
                 
                 
@@ -144,6 +154,30 @@
               }
             }
           );
+        }
+        
+        $scope.updateToFirebase = function(){
+            console.log("workspace changed... uploading");
+            $scope.userRef.update({
+               "workspace" : angular.copy($scope.workspace),
+               "semester1" : angular.copy($scope.semester1),
+               "semester2" : angular.copy($scope.semester2),
+               "semester3" : angular.copy($scope.semester3),
+               "semester4" : angular.copy($scope.semester4),
+               "semester5" : angular.copy($scope.semester5),
+               "semester6" : angular.copy($scope.semester6),
+               "semester7" : angular.copy($scope.semester7),
+               "semester8" : angular.copy($scope.semester8)
+            //   "s1Credits" : angular.copy($scope.s1Credits),
+            //   "s2Credits" : angular.copy($scope.s2Credits),
+            //   "s3Credits" : angular.copy($scope.s3Credits),
+            //   "s4Credits" : angular.copy($scope.s4Credits),
+            //   "s5Credits" : angular.copy($scope.s5Credits),
+            //   "s6Credits" : angular.copy($scope.s6Credits),
+            //   "s7Credits" : angular.copy($scope.s7Credits),
+            //   "s8Credits" : angular.copy($scope.s8Credits),
+            //   "totalCredits" : angular.copy($scope.totalCredits)
+            });
         }
     
         this.logout = function(){
@@ -163,31 +197,6 @@
                     }  
                     return false;
                 }
-                
-                $scope.user.$loaded().then(function(){
-                    $scope.$watch("workspace", function(){
-                        $scope.userRef.update({
-                           "workspace" : angular.copy($scope.workspace),
-                           "semester1" : angular.copy($scope.semester1),
-                           "semester2" : angular.copy($scope.semester2),
-                           "semester3" : angular.copy($scope.semester3),
-                           "semester4" : angular.copy($scope.semester4),
-                           "semester5" : angular.copy($scope.semester5),
-                           "semester6" : angular.copy($scope.semester6),
-                           "semester7" : angular.copy($scope.semester7),
-                           "semester8" : angular.copy($scope.semester8),
-                           "s1Credits" : angular.copy($scope.s1Credits),
-                           "s2Credits" : angular.copy($scope.s2Credits),
-                           "s3Credits" : angular.copy($scope.s3Credits),
-                           "s4Credits" : angular.copy($scope.s4Credits),
-                           "s5Credits" : $scope.s5Credits,
-                           "s6Credits" : $scope.s6Credits,
-                           "s7Credits" : $scope.s7Credits,
-                           "s8Credits" : $scope.s8Credits,
-                           "totalCredits" : $scope.totalCredits
-                        });
-                    }, true);
-                });
                 
                 var workspaceIndexOf = function(course){
                     for (var i = 0; i < $scope.workspace.length; i++){

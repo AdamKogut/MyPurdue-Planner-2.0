@@ -26,7 +26,10 @@
       initApp = function() {
         auth.onAuthStateChanged(function(user) {
           if (user) {
-            window.location.replace("index.html");
+            window.close();
+            window.open("index.html", _self);
+            
+            // window.location.replace("index.html");
           } else {
             var uiConfig = {
               'signInSuccessUrl': 'index.html',
